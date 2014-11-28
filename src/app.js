@@ -1,20 +1,26 @@
-// useful reference
-// http://lincolnloop.com/blog/untangle-your-javascript-browserify/
 var React = require('react');
-var CommentList = require('./jsx/CommentList.jsx').CommentList;
+var Page = require('./jsx/Page.jsx').Page;
 
-// tutorial1.js
-var CommentBox = React.createClass({
-  render: function() {
-    return (
-      <div className="commentBox">
-        Hello, world lrrrrrrrickrs! I am a CommentBoxsxxsy.
-        <CommentList/>
-      </div> 
-    );
+/////////////////////////////////
+// Blog users and their avatars
+/////////////////////////////////
+var userTable = require('./jsx/userTable').userTable;
+var IMAGE_URL_PREFIX = "assets/img/";
+currentUser = {
+  username: "luke" 
+};
+var getUserImage = function(username) {
+  if (userTable[username]) {
+    console.log("Returned image for " + username);
+    return userTable[username].image;
+  } else {
+    console.log("Image for " + username + " NOT FOUND");
+    return "";
   }
-});
+};
+
+
 React.render(
-  <CommentBox />,
-  document.getElementById('content')
+  <Page url="data/blog.json" />,
+  document.getElementById('blogapp')
 );

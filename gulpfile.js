@@ -69,8 +69,14 @@ gulp.task('browserify', function() {
     .pipe(connect.reload());
 });
 
+// DATA
+gulp.task("data", function() {
+  return gulp.src('src/data/*.json')
+     .pipe(gulp.dest(paths.datadest));
+});
+
 // Default Task
-gulp.task('default', ['html', 'browserify', 'watch', 'webserver'] );
+gulp.task('default', ['html', 'browserify', 'data', 'watch', 'webserver'] );
 
 // Watch Files For Changes
 gulp.task('watch', function() {

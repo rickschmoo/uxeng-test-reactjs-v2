@@ -1,4 +1,5 @@
-react-boilerplate-v1
+UX Eng Test using React v2
+rickschmoo@gmail.com
 
 React + browserify (+ reactify) + gulp (+live-reload) + git = this
 
