@@ -1,4 +1,7 @@
 var React = require('react');
+var $ = require('jquery');
+var Header = require('./Header.jsx').Header;
+var Posts = require('./Posts.jsx').Posts;
 
 var Page = React.createClass({
   getInitialState: function() {
@@ -24,7 +27,6 @@ var Page = React.createClass({
   render: function() {
     return (
       <div className="Page">
-        test123
         <Header currentUser={this.state.currentUser}/>
         <Posts data={this.state.data} currentUser={this.state.currentUser}/>
       </div>

@@ -1,3 +1,17 @@
+var IMAGE_URL_PREFIX = "assets/img/";
+var currentUser = {
+  username: "luke" 
+};
+var getUserImage = function(username) {
+  if (userTable[username]) {
+    console.log("Returned image for " + username);
+    return userTable[username].image;
+  } else {
+    console.log("Image for " + username + " NOT FOUND");
+    return "";
+  }
+};
+
 var userTable = {
 
   "wedge": {
@@ -35,3 +49,7 @@ var userTable = {
 };
 
 exports.userTable = userTable;
+exports.getUserImage = getUserImage;
+exports.IMAGE_URL_PREFIX = IMAGE_URL_PREFIX;
+exports.currentUser = currentUser;
+

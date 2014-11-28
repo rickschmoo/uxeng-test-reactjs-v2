@@ -4,7 +4,7 @@ var Page = require('./jsx/Page.jsx').Page;
 /////////////////////////////////
 // Blog users and their avatars
 /////////////////////////////////
-var userTable = require('./jsx/userTable').userTable;
+var userTable = require('./jsx/userTable.jsx').userTable;
 var IMAGE_URL_PREFIX = "assets/img/";
 currentUser = {
   username: "luke" 

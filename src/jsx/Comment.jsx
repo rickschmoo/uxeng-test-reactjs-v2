@@ -1,11 +1,15 @@
 /** @jsx React.DOM */
 var React = require('react');
+var CommentHeader = require('./CommentHeader.jsx').CommentHeader;
 
 var Comment = React.createClass({
   render: function() {
     return (
       <div className="Comment">
-        Commentyybooxxrreeeeeeerxyyx {this.props.name}
+        <CommentHeader author={this.props.author} time={this.props.time} />
+        <div className="comment-body">
+          {this.props.body}
+        </div>
       </div>
     );
   }
