@@ -5,6 +5,9 @@ var rename = require('gulp-rename');
 var del = require('del');
 var livereload = require('gulp-livereload');
 var connect = require('gulp-connect');
+var sass = require('gulp-sass');
+var concat = require('gulp-concat');
+
 // var jshint = require('gulp-jshint');
 
 var paths = {
@@ -75,8 +78,22 @@ gulp.task("data", function() {
      .pipe(gulp.dest(paths.datadest));
 });
 
+// IMAGES
+gulp.task("assets", function() {
+  return gulp.src('src/assets/img/*.jpg')
+     .pipe(gulp.dest(paths.assetsdest));
+});
+
+// STYLES: SASS -> CSS
+gulp.task("styles", function() {
+  return gulp.src('src/styles/*.scss')
+     .pipe(sass())
+     .pipe(concat('styles.css'))
+     .pipe(gulp.dest(paths.cssdest));
+});
+
 // Default Task
-gulp.task('default', ['html', 'browserify', 'data', 'watch', 'webserver'] );
+gulp.task('default', ['html', 'browserify', 'data', 'styles', 'assets', 'watch', 'webserver'] );
 
 // Watch Files For Changes
 gulp.task('watch', function() {
@@ -85,7 +102,7 @@ gulp.task('watch', function() {
     gulp.watch('src/*.html', ['html']);
     gulp.watch('src/*.js', ['browserify']);
     gulp.watch('src/jsx/*.jsx', ['browserify']);
-    // gulp.watch('scss/*.scss', ['sass']);
+    gulp.watch('src/styles/*.scss', ['styles']);
 
     gulp.watch(['www/**']).on('change', livereload.changed);
 });

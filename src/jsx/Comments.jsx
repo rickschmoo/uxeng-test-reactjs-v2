@@ -1,6 +1,7 @@
 var React = require('react');
 var Comment = require('./Comment.jsx').Comment;
 var CommentForm = require('./CommentForm.jsx').CommentForm;
+var UT = require('./userTable.jsx');
 
 
 var Comments = React.createClass({
@@ -13,17 +14,20 @@ var Comments = React.createClass({
 
   handleCommentSubmit: function(newcomment) {
     // TODO: submit to the server and refresh the list
+    console.log("Comments: NEW COMMENT SUBMITTED " + newcomment.newcomment);
+
     var oldcomments = this.state.comments;  
+    console.log("Comments: oldComments # = " + oldcomments.length);
 
     var builtcomment = {
-      'username': currentUser.username,
+      'username': UT.currentUser.username,
       // 'author': currentUser.username,
       'body': newcomment.newcomment,
       'pubdatetime': newcomment.newtime // newcomment.time.toString()
     };
 
     var newcomments = oldcomments.concat([builtcomment]);
-    console.log(newcomments);
+    console.log("Comments: newcomments # = " + newcomments.length);
     this.setState({comments: newcomments});
   },
 
@@ -39,7 +43,7 @@ var Comments = React.createClass({
     });
 
     
-    console.log("COMMENTS " + this.props.postid + " - todisplay = " + this.props.todisplay);
+    // console.log("COMMENTS " + this.props.postid + " - todisplay = " + this.props.todisplay);
     if (this.props.todisplay) {
       commentsClasses = "Comments comments-display";
     } else {

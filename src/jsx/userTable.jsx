@@ -4,7 +4,7 @@ var currentUser = {
 };
 var getUserImage = function(username) {
   if (userTable[username]) {
-    console.log("Returned image for " + username);
+    // console.log("Returned image for " + username);
     return userTable[username].image;
   } else {
     console.log("Image for " + username + " NOT FOUND");

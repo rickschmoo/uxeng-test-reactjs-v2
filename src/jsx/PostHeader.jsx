@@ -4,20 +4,12 @@ var UT = require('./userTable.jsx');
 
 var PostHeader = React.createClass({
 
-  getInitialState: function() {
-    return {
-      idx: this.props.idx,
-      status: ""
-    };
-  },
-
   handleDeleteLinkClick: function(event) {
     event.preventDefault();
     event.stopPropagation();
+    console.log("User deleted post " + this.props.idx);
     this.setState( { status : "DELETED" } );
     this.props.onPostDeletion();
-    console.log("User deleted post " + this.state.idx);
-
   },
 
   render: function() {
@@ -25,7 +17,7 @@ var PostHeader = React.createClass({
     var image_url = UT.IMAGE_URL_PREFIX + UT.getUserImage(this.props.author);
     // var image_url = "TEST";
     if (this.props.author == UT.currentUser.username) {
-      console.log("SAME USER - CAN DELETE POST " + this.state.idx);
+      // console.log("SAME USER - CAN DELETE POST " + this.props.idx);
       deleteLinkClasses = "deleteLink userCanDelete";
     } else {
       deleteLinkClasses = "deleteLink";
@@ -40,13 +32,16 @@ var PostHeader = React.createClass({
           <div className="post-time">
             {this.props.time}
           </div>
+          <div className="post-id">
+            ID: {this.props.idx}
+          </div>
         </div>
         <div className="avatar">
           <img src={image_url}/>
         </div>
         <div className={deleteLinkClasses}
              onClick={this.handleDeleteLinkClick}>
-          xxxxxxx
+          delete_me
         </div>
       </div>
     );

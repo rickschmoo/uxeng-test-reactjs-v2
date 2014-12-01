@@ -6,23 +6,21 @@ var Post = React.createClass({
 
   getInitialState: function() {
     return {
-      comments: this.props.comments,
       showComments: false,
-      idx: this.props.thiskey,
-      status: ""
+      idx: this.props.thiskey
     };
   },
 
   handlePostDeletionTwo: function() {
-    console.log("POST received DELETE");
-    this.props.onPostDeletionPosts(this.state.idx);
+    console.log("POST " + this.props.thiskey + " received DELETE");
+    this.props.onPostDeletionPosts(this.props.thiskey);
   },
 
   handleCommentsLinkClick: function(event) {
     event.preventDefault();
     event.stopPropagation();
     this.setState( { showComments : !this.state.showComments } );
-    console.log("Click on post " + this.state.idx);
+    console.log("Click on post " + this.props.thiskey);
   },
 
   render: function() {
@@ -37,14 +35,14 @@ var Post = React.createClass({
       <div className="Post">
         <PostHeader author={this.props.author}
                     time={this.props.pubdatetime}
-                    idx={this.state.idx}
+                    idx={this.props.thiskey}
                     onPostDeletion={this.handlePostDeletionTwo}/>
         <div className="blogpost-body">{this.props.body}</div>
         <div className="comments-link"
              onClick={this.handleCommentsLinkClick}>
           {this.props.comments.length} Comments (show {displaySetting})
         </div>
-        <Comments postid={this.state.idx}
+        <Comments postid={this.props.thiskey}
                   comments={this.props.comments}
                   todisplay={this.state.showComments}/>
       </div>
